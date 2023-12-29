@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="WWI_Datawarehouse"
+  DTS:DTSID="{A623A1DE-DB07-4EA7-A3D0-EE06E6CF8D51}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=LAPTOP-34MAHGRB\SQLEXPRESS;Initial Catalog=WideWorldImportersDW;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-WWI_SSIS-{A623A1DE-DB07-4EA7-A3D0-EE06E6CF8D51}LAPTOP-34MAHGRB\SQLEXPRESS.WideWorldImportersDW;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

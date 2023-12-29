@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="WWI_MartDemo"
+  DTS:DTSID="{D053903E-B065-4E46-AFEE-5ED5F6E3BB84}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=localhost;Initial Catalog=WWI_MartDemo;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-WWI_SSIS-{D053903E-B065-4E46-AFEE-5ED5F6E3BB84}localhost.WWI_MartDemo;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

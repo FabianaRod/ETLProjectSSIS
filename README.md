@@ -1,5 +1,7 @@
 ## SQL Server Integration Services (SSIS) Project using Visual Studio
 
+
+I took advantage of microsoft's public data to develop this SSIS project using the AdventureWorksDW2022 and WideWorldImporters datasets.
 This has certainly been the most challenging project I have created using Visual Studio for ETL processes and here's why: 🤔
 
 

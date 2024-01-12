@@ -1,4 +1,4 @@
-## SQL Server Integration Services (SSIS) Project using Visual Studio
+# SQL Server Integration Services (SSIS) Project using Visual Studio
 
 
 I took advantage of microsoft's public data to develop this SSIS project using the AdventureWorksDW2022 and WideWorldImporters datasets.
@@ -6,13 +6,13 @@ This has certainly been the most challenging project I have created using Visual
 
 
 
-### 🟣 Pack 1: Import and Export
+## 🟣 Pack 1: Import and Export
 Here's the overview for this 1rst pack:
 
 ![image](https://github.com/FabianaRod/ETLProjectSSIS/assets/155020943/acfb0e6c-455e-4b50-9c8e-27186235612c)
 
 
-#### How to: Basic Steps
+### How to: Basic Steps
 
 First, I created a WideWorldImporters connection in ADO.NET and set the WWI_MartDemo table in SQL MS as the destination.
 
@@ -24,7 +24,7 @@ Finally, created an OLEDB destination and "Territory" table to populate it, **ad
 
 ![(1)](https://github.com/FabianaRod/ETLProjectSSIS/assets/155020943/040b1a26-d997-42cb-a9a0-6f65a2c69ff7)
 
-#### How to: Variable and Container Creation
+### How to: Variable and Container Creation
 
 Created two variables, **varFileName** and **varFileNationality**, and established two flat file connections: "National Clients" and "International Clients" using the supplied text files (4).
 Then, set up a **foreach loop container** called "Massive Clients Upload" and configured it as a foreach file enumerator. 
@@ -35,7 +35,7 @@ Lastly, configured both tasks with a flat file source and an OLE DB destination,
 
 ![image](https://github.com/FabianaRod/ETLProjectSSIS/assets/155020943/fb893091-3391-4752-991e-7bb21be6fb35)
 
-#### How to: Data Conversion
+### How to: Data Conversion
 
 I added a data flow task called "Customers Load (Dimension)" and created a new OLE DB connection to WideworldImporters (6).
 Also established a flat file connection to the provided "Customers" table called "Customer file" (7).
@@ -44,7 +44,7 @@ In the data flow task, set up a "Read Customers" flat file source with all defau
 
 ![image](https://github.com/FabianaRod/ETLProjectSSIS/assets/155020943/6445fa45-1afd-4231-bd0b-2a59f9b03727)
 
-#### How to: Lookups
+### How to: Lookups
 
 Created a lookup called "Lookup CustomerCategory" using the [Sales][CustomerCategories] table, setting up the columns and relationships with the keys *Customercategoryid, Buyinggroupid, and Primarycontactpersonid*. 
 Also created an OLE DB destination in WWI_MartDemo with the corresponding table, **checking the supplied mappings**, and (again) deleted the CustomerDimension table in the preceding flow task (9).
@@ -52,7 +52,7 @@ Also created an OLE DB destination in WWI_MartDemo with the corresponding table,
 
 ![image](https://github.com/FabianaRod/ETLProjectSSIS/assets/155020943/3ef5e30b-d950-4e47-b576-4e6b85183ac2)
 
-#### How to: Derived Column
+### How to: Derived Column
 
 Set up a dataflow task called "StateProvince Load" with an ADO.NET source using an SQL command to select specific data from the "StateProvinces(Application)" table (10). 
 In that task, I used a derived column tool to create new columns and concatenate values. 
@@ -61,7 +61,7 @@ Then, set up an OLE DB destination for the [DimStateProvince] table, and deleted
 
 ![image](https://github.com/FabianaRod/ETLProjectSSIS/assets/155020943/07b36b1f-51a6-432f-96b2-62573994ca8a)
 
-#### How to: Aggregate and Sort
+### How to: Aggregate and Sort
 
 Created the "Group Sales by Geography" data flow task. I set up a connection from the "Sales by Geography" table in flat file format with specific data types (12).
 Next, created a flat file source and set up aggregations for *cities, provinces, countries and continents*, each with their respective sums, averages, minimums and maximums for *quantities, tax rates and amounts, profits and totals*.
@@ -72,13 +72,13 @@ Finally, I set up a flat file destination for each *city, province, country and 
 ![image](https://github.com/FabianaRod/ETLProjectSSIS/assets/155020943/659531ce-c840-495b-964c-c87bfa5ca3b8)
 
 
-### 🟢 Pack 2: Demo Join Conditional Split
+## 🟢 Pack 2: Demo Join Conditional Split
 Here you will see the steps to build this second pack.
 
 ![image](https://github.com/FabianaRod/ETLProjectSSIS/assets/155020943/5da3da98-d959-484a-b13e-227487b06c12)
 
 
-#### How to: Joins and Condition Splits
+### How to: Joins and Condition Splits
 
 Two SQL MS tables, "CityStaging" and "CityDimension", were created in the WWI_MartDemo database. Then, a new **SSIS pack** called "DemoJoinConditionalSplit" was also created (inheriting previous OLEDB and ADO.NET connections).
 In the package, *flat file and neon connections* were set up to read "Countries" file and "Cities" file, respectively. 
@@ -92,14 +92,14 @@ Finally, i included a data deletion task in the CityStaging and CityDimension ta
 ![(1) (1)](https://github.com/FabianaRod/ETLProjectSSIS/assets/155020943/fea3afc5-22b3-477e-8f42-94ac3c274c14)
 
 
-### 🟠 Pack 3: Multicast Demo
+## 🟠 Pack 3: Multicast Demo
 Here I will show you the construction of the third and very short package.
 
 ![image](https://github.com/FabianaRod/ETLProjectSSIS/assets/155020943/1058f37b-51ef-420d-95aa-089124737b5a)
 
 
 
-#### How to: Multicast
+### How to: Multicast
 
 I created a **new SSIS** package called MulticastDemo. In addition and set up a new connection in the connection manager called WWI_Datawarehouse. 
 In the Supplier Purchases data flow task (17), an OLE DB source was set up from WWI_Datawarehouse, selecting the Suppliers dimensions and Purchases purchases with a JOIN query.
@@ -109,10 +109,10 @@ Finally, the data was loaded into both files.
 ![image](https://github.com/FabianaRod/ETLProjectSSIS/assets/155020943/e4061d9c-a51f-49eb-b73a-e659f32434c4)
 
 
-### 🔵 Pack 4: Slowly Changing Dimension
+## 🔵 Pack 4: Slowly Changing Dimension
 ![image](https://github.com/FabianaRod/ETLProjectSSIS/assets/155020943/d788c1cd-7178-4c42-86e6-98577b3c6238)
 
-#### How to: SCD
+### How to: SCD
 
 I created the last SSIS package called "SlowChangeDim Demo" and established an OLE DB connection called "AdventureWorksDWW2022", then created a table in SQL named Employee_Source. 
 Next, I inserted two rows of data into this table.
